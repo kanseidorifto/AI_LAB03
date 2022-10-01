@@ -10,16 +10,17 @@ namespace AI_LAB02
     {
         private int[] w;
         int k;
-        int theta;
+        double u;
         public Neyron_EvenOdd(int _k)
         {
             if (_k > 0)
             {
                 Random random = new Random();
                 k = _k;
-                w = new int[k];
+                u = 1;
+                w = new int[k + 1];
+                w[0] = random.Next(0, 10);
                 Rand_w();
-                theta = random.Next(0, 10);
             }
         }
         public Neyron_EvenOdd(string path = "neyron_w.txt")
@@ -28,19 +29,19 @@ namespace AI_LAB02
             if (fileText != null)
             {
                 string[] items = fileText.Split(' ');
-                theta = Convert.ToInt32(items[0]);
-                k = items.Length - 2;
+                k = items.Length - 1;
                 w = new int[k];
+                u = 1; //
                 for (int i = 0; i < k; i++)
                 {
-                    w[i] = Convert.ToInt32(items[i + 1]);
+                    w[i] = Convert.ToInt32(items[i]);
                 }
 
             }
         }
         public bool Save_W(string path)
         {
-            string t = Convert.ToInt32(theta).ToString() + " ";
+            string t = "";
             for (int i = 0; i < k; i++)
             {
                 t += w[i].ToString() + " ";
@@ -54,18 +55,21 @@ namespace AI_LAB02
             if (fileText != null)
             {
                 string[] items = fileText.Split(' ');
-                theta = Convert.ToInt32(items[0]);
-                k = items.Length - 2;
-                if (k > 14) 
+                k = items.Length - 1;
+                if (k > 25)
                     return false;
                 w = new int[k];
                 for (int i = 0; i < k; i++)
                 {
-                    w[i] = Convert.ToInt32(items[i + 1]);
+                    w[i] = Convert.ToInt32(items[i]);
                 }
                 return true;
             }
             return false;
+        }
+        public void Set_W(int[] _w)
+        {
+            w = _w;
         }
         void Rand_w()
         {
@@ -82,36 +86,22 @@ namespace AI_LAB02
             {
                 W_Sum += w[i] * Convert.ToInt32(image[i]);
             }
-            if (W_Sum >= theta)
+            if (W_Sum >= 0)
             {
                 return true;
             }
             return false;
         }
-        public bool Learn(bool[] image, bool right_result)
+        public bool Learn(bool[] image, int right_result)
         {
-            bool result = Run(image);
+            int result = Convert.ToInt32(Run(image));
             if (result != right_result)
             {
-                if (result == false)
+                int eps = result - right_result;
+                w[0] = w[0] + (int)u * eps;
+                for (int i = 1; i < k; i++)
                 {
-                    for (int i = 0; i < k; i++)
-                    {
-                        if (image[i] == true)
-                        {
-                            w[i] += Convert.ToInt32(image[i]);
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < k; i++)
-                    {
-                        if (image[i] == true)
-                        {
-                            w[i] -= Convert.ToInt32(image[i]);
-                        }
-                    }
+                    w[i] = w[i] + (int)u * eps * Convert.ToInt32(image[i]);
                 }
                 return true;
             }

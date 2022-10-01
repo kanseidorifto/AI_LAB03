@@ -65,6 +65,9 @@
             this.tileControl23 = new AI_LAB02.TileControl();
             this.tileControl24 = new AI_LAB02.TileControl();
             this.tileControl25 = new AI_LAB02.TileControl();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -254,14 +257,9 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 352);
+            this.numericUpDown1.Location = new System.Drawing.Point(12, 354);
             this.numericUpDown1.Maximum = new decimal(new int[] {
-            9,
-            0,
-            0,
-            0});
-            this.numericUpDown1.Minimum = new decimal(new int[] {
-            1,
+            33,
             0,
             0,
             0});
@@ -273,13 +271,12 @@
             0,
             0,
             0});
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.button5_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(80, 350);
+            this.button5.Location = new System.Drawing.Point(80, 352);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(130, 29);
+            this.button5.Size = new System.Drawing.Size(198, 29);
             this.button5.TabIndex = 26;
             this.button5.Text = "Відобразити";
             this.button5.UseVisualStyleBackColor = true;
@@ -355,11 +352,44 @@
             this.tileControl25.Size = new System.Drawing.Size(62, 62);
             this.tileControl25.TabIndex = 36;
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(284, 352);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(62, 29);
+            this.button6.TabIndex = 37;
+            this.button6.Text = "+";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(12, 387);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(334, 29);
+            this.button7.TabIndex = 38;
+            this.button7.Text = "Завантажити вх. дані";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(12, 422);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(334, 29);
+            this.button8.TabIndex = 39;
+            this.button8.Text = "Зберегти вх. дані";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 388);
+            this.ClientSize = new System.Drawing.Size(581, 457);
+            this.Controls.Add(this.button8);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.tileControl25);
             this.Controls.Add(this.tileControl24);
             this.Controls.Add(this.tileControl23);
@@ -442,5 +472,8 @@
         private TileControl tileControl23;
         private TileControl tileControl24;
         private TileControl tileControl25;
+        private Button button6;
+        private Button button7;
+        private Button button8;
     }
 }
