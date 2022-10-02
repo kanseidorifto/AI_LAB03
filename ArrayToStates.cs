@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace AI_LAB02
 {
@@ -12,90 +12,20 @@ namespace AI_LAB02
         [JsonInclude]
         public int count;
         [JsonInclude]
-        public List<bool[]> n_to_st/* = {
-            new bool[]{
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false
-            },
-            new bool[]{
-                false,false,true,false,false,
-                false,true,false,true,false,
-                false,true,false,true,false,
-                false,true,true,true,false,
-                false,true,false,true,false
-            },
-            new bool[]{
-                false,true,true,true,false,
-                false,true,false,false,false,
-                false,true,true,true,false,
-                false,true,false,true,false,
-                false,true,true,true,false
-            },
-            new bool[]{
-                false,true,true,false,false,
-                false,true,false,true,false,
-                false,true,true,false,false,
-                false,true,false,true,false,
-                false,true,true,false,false
-},
-            new bool[]{
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false,
-                false,false,false,false,false
-},
-            new bool[]{
-                true,true,true,
-                true,false,false,
-                true,true,true,
-                false,false,true,
-                true,true,true
-},
-            new bool[]{
-                true,true,true,
-                true,false,false,
-                true,true,true,
-                true,false,true,
-                true,true,true
-},
-            new bool[]{
-                true,true,true,
-                true,false,true,
-                false,false,true,
-                false,false,true,
-                false,false,true
-},
-            new bool[]{
-                true,true,true,
-                true,false,true,
-                true,true,true,
-                true,false,true,
-                true,true,true
-},
-            new bool[]{
-                true,true,true,
-                true,false,true,
-                true,true,true,
-                false,false,true,
-                true,true,true
-}
-        }*/;
+        public List<bool[]> elements;
         public ArrayToStates()
         {
             count = 1;
-            n_to_st = new List<bool[]>();
-            n_to_st.Add(new bool[] {true,false,false,false,false,
+            elements = new List<bool[]>();
+            elements.Add(new bool[] {
+                true,false,false,false,false,
                 false,false,false,false,false,
                 false,false,false,false,false,
                 false,false,false,false,false,
-                false,false,false,false,false });
-
+                false,false,false,false,false 
+            });
         }
-        public void Set(int k, bool[] states)
+        public void Set(int k, bool[] states) // Змінити(або додати, якщо занято) набір даних
         {
             if (states != null)
             {
@@ -103,20 +33,20 @@ namespace AI_LAB02
                 for (int i = 0; i < states.Length; i++)
                     new_states[i] = states[i];
                 if (k < count)
-                    n_to_st[k] = new_states;
+                    elements[k] = new_states;
                 else
                 {
-                    n_to_st.Add(new_states);
+                    elements.Add(new_states);
                     count++;
                 }
             }
         }
-        public bool[] Convert(int k)
+        public bool[] Convert(int k) // Повернути масив значень відповідно до запитуваного номера
         {
             if (k > 0 && k < count)
-                return n_to_st[k];
+                return elements[k];
             else
-                return n_to_st[0];
+                return elements[0];
         }
     }
 }
